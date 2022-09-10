@@ -5,9 +5,11 @@ const refs = {
 }
 refs.galleryCardsForm.addEventListener('submit', onGalleryCardsFormSubmit);
 
-// galleryCardsApi().then(data => console.log(data))
-
-function onGalleryCardsFormSubmit(e) { 
+async function onGalleryCardsFormSubmit(e) { 
     e.preventDefault();
-    console.log(e)
+     const targetName = e.target.elements.searchQuery.value
+     console.log(targetName)
+     // galleryCardsApi(targetName).then(data => console.log(data))
+     const responce = await galleryCardsApi(targetName)
+     console.log(responce)
 }

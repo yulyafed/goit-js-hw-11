@@ -2,7 +2,7 @@
 export function renderGalleryCards(arr) { 
     const markup = arr.reduce((acc,obj) => acc + `
     <div class="photo-card">
-  <img src="${obj.webformatURL}" alt="${obj.tags}" loading="lazy" />
+ <a href = ${obj.largeImageURL} > <img src="${obj.webformatURL}" alt="${obj.tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
       <b>Likes = ${obj.likes}</b>

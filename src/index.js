@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import './css/styles.css';
 import { galleryCardsApi } from "./galleryCardsApi";
 import { renderGalleryCards } from "./renderGalleryCards";
 
@@ -14,7 +15,7 @@ refs.galleryCardsForm.addEventListener('submit', onGalleryCardsFormSubmit);
 refs.btnLoadMore.addEventListener('click', onBtnLoadMoreClick);
 
 let page = 1;
-let query = ""
+let query = "";
 
 async function onGalleryCardsFormSubmit(e) {
      e.preventDefault();
@@ -29,13 +30,14 @@ async function onGalleryCardsFormSubmit(e) {
 
      const response = await galleryCardsApi(query);
 
-     if (response.total === 0) {
+     if (response.total === 0 || query === '') {
           Notiflix.Notify.success('Sorry, there are no images matching your search query. Please try again.');
      }
 
      refs.galleryCardsBox.insertAdjacentHTML('beforeend', renderGalleryCards(response.hits));
      Notiflix.Notify.info(`Hooray! We found ${response.totalHits} images.`);
-     var lightbox = $('.gallery a').simpleLightbox({ });
+
+         
      const { height: cardHeight } = document
           .querySelector(".gallery")
           .firstElementChild.getBoundingClientRect();
@@ -44,11 +46,13 @@ async function onGalleryCardsFormSubmit(e) {
           top: cardHeight * 2,
           behavior: "smooth",
      });
+
      refs.btnLoadMore.removeAttribute('hidden');
 }
 
 async function onBtnLoadMoreClick(e) {
      page += 1;
+
      const response = await galleryCardsApi(query, page);
      
      if (response.hits.length > 0) {
@@ -60,4 +64,4 @@ async function onBtnLoadMoreClick(e) {
      }
 }
 
-     // galleryCardsApi(targetItem).then(data => console.log(data))
+    

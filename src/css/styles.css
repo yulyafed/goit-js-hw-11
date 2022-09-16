@@ -21,6 +21,15 @@ img{
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  margin-bottom: 10px;
+}
+.form-btn{
+  border: 1px solid transparent;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  color: #FFFFFF;
+  background-color: blue;
+  margin-left: 5px;
 }
 .gallery {
   display: flex;

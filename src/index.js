@@ -22,7 +22,7 @@ async function onGalleryCardsFormSubmit(e) {
 
      query = e.target.elements.searchQuery.value;
 
-     refs.btnLoadMore.setAttribute('hidden', true);
+     refs.btnLoadMore.classList.add('hidden');
 
      refs.galleryCardsBox.innerHTML = '';
 
@@ -47,7 +47,7 @@ async function onGalleryCardsFormSubmit(e) {
           behavior: "smooth",
      });
 
-     refs.btnLoadMore.removeAttribute('hidden');
+     refs.btnLoadMore.classList.remove('hidden');
 }
 
 async function onBtnLoadMoreClick(e) {
@@ -59,7 +59,7 @@ async function onBtnLoadMoreClick(e) {
           refs.galleryCardsBox.insertAdjacentHTML('beforeend', renderGalleryCards(response.hits));
                   
      } else {
-          refs.btnLoadMore.setAttribute('hidden', true);
+          refs.btnLoadMore.classList.add('hidden');
           Notiflix.Notify.success("We're sorry, but you've reached the end of search results.");
      }
 }
